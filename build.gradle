@@ -1,0 +1,26 @@
+plugins {
+  id 'org.jenkins-ci.jpi' version '0.33.0'
+}
+
+
+repositories {
+    jcenter()
+    mavenLocal()
+    maven {
+        url('https://repo.jenkins-ci.org/public/')
+    }
+}
+
+group = 'org.jenkins-ci.plugins'
+version = '1.0' 
+description = 'SDP Pipeline Libraries' 
+
+jenkinsPlugin {
+    coreVersion = '2.121.3'
+    shortName = 'sdp-libraries2'
+    displayName = 'Solutions Delivery Platform'
+}
+
+dependencies{
+    jenkinsPlugins "org.jenkins-ci.plugins:templating-engine:1.4" 
+}
