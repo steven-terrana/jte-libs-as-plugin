@@ -9,6 +9,6 @@ Sample Library Repository
 .. toctree::
    :maxdepth: 1
    :glob:
-   :caption: Libraries 📖
+   :caption: Libraries
 
    src/main/resources/**/README

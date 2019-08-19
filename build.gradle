@@ -2,7 +2,6 @@ plugins {
   id 'org.jenkins-ci.jpi' version '0.33.0'
 }
 
-
 repositories {
     jcenter()
     mavenLocal()
@@ -17,8 +16,13 @@ description = 'SDP Pipeline Libraries'
 
 jenkinsPlugin {
     coreVersion = '2.121.3'
-    shortName = 'sdp-libraries2'
-    displayName = 'Solutions Delivery Platform'
+    shortName = 'my-custom-libs'
+    /*
+        the displayName will be what is displayed in the 
+        library source dropdown menu when selecting a 
+        library providing plugin
+    */
+    displayName = 'My Custom Library Source'
 }
 
 dependencies{

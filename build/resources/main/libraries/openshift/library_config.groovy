@@ -1,5 +1,0 @@
-fields{
-    required{
-        banana = String
-    }
-}

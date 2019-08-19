@@ -4,10 +4,9 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = JenkinsTemplatingEngine
+SPHINXPROJ    = jte-libs
 SOURCEDIR     = .
-BUILDDIR      = _build
-DOCSDIR       = docs
+BUILDDIR      = docs/_build
 
 .PHONY: help Makefile docs build live deploy 
 
@@ -19,7 +18,7 @@ clean: ## removes compiled documentation and jpi
 	rm -rf $(DOCSDIR)/$(BUILDDIR) build bin 
 
 image: ## builds container image for building the documentation
-	docker build $(DOCSDIR) -t sdp-docs
+	docker build . -f docs/Dockerfile -t jte-lib-docs
 
 docs: ## builds documentation in _build/html 
       ## run make docs live for hot reloading of edits during development
@@ -28,16 +27,16 @@ docs: ## builds documentation in _build/html
 	$(eval goal := $(filter-out $@,$(MAKECMDGOALS)))
 	@if [ "$(goal)" = "live" ]; then\
 		cd $(DOCSDIR);\
-		docker run -p 8000:8000 -v $(shell pwd)/$(DOCSDIR):/app sdp-docs sphinx-autobuild -b html $(ALLSPHINXOPTS) . $(BUILDDIR)/html -H 0.0.0.0;\
+		docker run -p 8000:8000 -v $(shell pwd):/app jte-lib-docs sphinx-autobuild -b html $(ALLSPHINXOPTS) . $(BUILDDIR)/html -H 0.0.0.0;\
 		cd - ;\
 	elif [ "$(goal)" = "deploy" ]; then\
 		$(eval old_remote := $(shell git remote get-url origin)) \
 		git remote set-url origin https://$(user):$(token)@github.com/jenkinsci/templating-engine-plugin.git ;\
-		docker run -v $(shell pwd):/app sdp-docs sphinx-versioning push --show-banner docs gh-pages . ;\
+		docker run -v $(shell pwd):/app jte-lib-docs sphinx-versioning push --show-banner docs gh-pages . ;\
 		echo git remote set-url origin $(old_remote) ;\
 		git remote set-url origin $(old_remote) ;\
 	else\
-		docker run -v $(shell pwd)/$(DOCSDIR):/app sdp-docs $(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) ;\
+		docker run -v $(shell pwd):/app jte-lib-docs $(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) ;\
 	fi
 
 deploy: ; 

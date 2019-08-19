@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Plugin-Dependencies: templating-engine:1.4
-Long-Name: Solutions Delivery Platform
+Long-Name: My Custom Library Source
 Group-Id: org.jenkins-ci.plugins
 Minimum-Java-Version: 1.8
 Plugin-Version: 1.0
 Jenkins-Version: 2.121.3
-Extension-Name: sdp-libraries2
-Short-Name: sdp-libraries2
+Extension-Name: my-custom-libs
+Short-Name: my-custom-libs
 
