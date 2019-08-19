@@ -9,7 +9,9 @@ package customize_this
 import org.boozallen.plugins.jte.config.libraries.LibraryProvidingPlugin
 import org.boozallen.plugins.jte.config.libraries.LibraryProvidingPlugin.LibraryProvidingPluginDescriptor
 import hudson.Extension 
+import org.kohsuke.stapler.DataBoundConstructor 
 
 class MyLibraries extends LibraryProvidingPlugin{
+    @DataBoundConstructor MyLibraries(){}
     @Extension public static class DescriptorImpl extends LibraryProvidingPluginDescriptor{}
 }

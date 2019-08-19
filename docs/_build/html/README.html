@@ -46,7 +46,7 @@
   <link rel="stylesheet" href="_static/style.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Library A" href="src/main/resources/libraries/LibraryA/README.html" /> 
+    <link rel="next" title="Library A" href="src/main/resources/libraries/libraryA/README.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,10 +90,10 @@
               
             
             
-              <p class="caption"><span class="caption-text">Libraries</span></p>
+              <p class="caption"><span class="caption-text">Libraries 📖</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/LibraryA/README.html">Library A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/LibraryB/README.html">Library B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/libraryA/README.html">Library A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/libraryB/README.html">Library B</a></li>
 </ul>
 
             
@@ -160,12 +160,65 @@
             
   <div class="section" id="sample-library-repository">
 <span id="home"></span><h1>Sample Library Repository<a class="headerlink" href="#sample-library-repository" title="Permalink to this headline">¶</a></h1>
+<p>There is a <code class="docutils literal"><span class="pre">Makefile</span></code> at the root of this repository that can help with the various
+tasks you might need to perform.  These tasks are outlined below along with how to
+customize various aspects of this repository to fit your needs.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Docker is a prerequisite to take advantage of the <code class="docutils literal"><span class="pre">make</span></code> commands.</p>
+</div>
+<div class="section" id="building-the-plugin">
+<h2>Building the Plugin<a class="headerlink" href="#building-the-plugin" title="Permalink to this headline">¶</a></h2>
+<p>To build the Jenkins Plugin run:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">make</span> <span class="pre">jpi</span></code></div>
+</div>
+</div></blockquote>
+<div class="section" id="customizing-the-plugin">
+<h3>Customizing the Plugin<a class="headerlink" href="#customizing-the-plugin" title="Permalink to this headline">¶</a></h3>
+<p>The plugin is configured via the <code class="docutils literal"><span class="pre">build.gradle</span></code> file.  This file is contains comments
+outlining how to customize the plugin.</p>
+<p>The plugin is built using the <a class="reference external" href="https://github.com/jenkinsci/gradle-jpi-plugin">Gradle JPI Plugin</a>
+and more configuration options can be seen there.</p>
+</div>
+</div>
+<div class="section" id="adding-libraries">
+<h2>Adding Libraries<a class="headerlink" href="#adding-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Libraries are just directories under <code class="docutils literal"><span class="pre">src/main/resources/libraries</span></code>.  To create a new library, just
+create a new directory.  It will be referenceable for loading via the directory name.</p>
+<p>It is recommended that you have a <code class="docutils literal"><span class="pre">README.rst</span></code> for each library, outlining the steps provided and
+configuration options for the library.  This README will automatically be compiled into the documentation.</p>
+</div>
+<div class="section" id="building-the-documentation">
+<h2>Building the Documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">¶</a></h2>
+<p>The documentation is built using <a class="reference external" href="http://www.sphinx-doc.org/en/master/">Sphinx</a> and the
+<a class="reference external" href="https://sphinx-rtd-theme.readthedocs.io/en/stable/">Read the Docs</a> theme.</p>
+<p>The documentation is configured via the <code class="docutils literal"><span class="pre">conf.py</span></code> file at the root of this repository.</p>
+<p>Building the documentation requires docker and can be done via:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">make</span> <span class="pre">docs</span></code></div>
+</div>
+</div></blockquote>
+<p>This will compile the documentation and can be viewed at <code class="docutils literal"><span class="pre">docs/_build/html/README.html</span></code>.</p>
+<div class="section" id="hot-reloading">
+<h3>Hot Reloading<a class="headerlink" href="#hot-reloading" title="Permalink to this headline">¶</a></h3>
+<p>To get view the documentation updated in realtime during local development, run:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">make</span> <span class="pre">docs</span> <span class="pre">live</span></code></div>
+</div>
+</div></blockquote>
+<p>The documentation will be viewable at <code class="docutils literal"><span class="pre">http://localhost:8000</span></code></p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Libraries</span></p>
+<p class="caption"><span class="caption-text">Libraries 📖</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/LibraryA/README.html">Library A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/LibraryB/README.html">Library B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/libraryA/README.html">Library A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src/main/resources/libraries/libraryB/README.html">Library B</a></li>
 </ul>
+</div>
+</div>
 </div>
 </div>
 
@@ -177,7 +230,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="src/main/resources/libraries/LibraryA/README.html" class="btn btn-neutral float-right" title="Library A" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="src/main/resources/libraries/libraryA/README.html" class="btn btn-neutral float-right" title="Library A" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

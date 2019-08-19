@@ -26,5 +26,16 @@ jenkinsPlugin {
 }
 
 dependencies{
+    /*
+        pin the earliest version of JTE that your libraries depend
+        upon
+    */  
     jenkinsPlugins "org.jenkins-ci.plugins:templating-engine:1.4" 
+
+    ///////////////////////
+    // Plugin Dependencies 
+    // - add the plugins your libraries depend upon below
+    //   following the same syntax as the JTE dependency
+    ///////////////////////
+    
 }

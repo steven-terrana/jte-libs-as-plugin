@@ -7,6 +7,8 @@ SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = jte-libs
 SOURCEDIR     = .
 BUILDDIR      = docs/_build
+ORG_NAME      = # add the github org your lib repo is in 
+REPO_NAME     = # add the github repository name 
 
 .PHONY: help Makefile docs build live deploy 
 
@@ -17,13 +19,16 @@ help: ## Show target options
 clean: ## removes compiled documentation and jpi 
 	rm -rf $(DOCSDIR)/$(BUILDDIR) build bin 
 
-image: ## builds container image for building the documentation
+docs-image: ## builds container image for building the documentation
 	docker build . -f docs/Dockerfile -t jte-lib-docs
+
+plugin-image: ## builds container image for building the Jenkins Plugin
+	docker build . -t jte-plugin-env
 
 docs: ## builds documentation in _build/html 
       ## run make docs live for hot reloading of edits during development
 	make clean
-	make image 
+	make docs-image 
 	$(eval goal := $(filter-out $@,$(MAKECMDGOALS)))
 	@if [ "$(goal)" = "live" ]; then\
 		cd $(DOCSDIR);\
@@ -31,7 +36,7 @@ docs: ## builds documentation in _build/html
 		cd - ;\
 	elif [ "$(goal)" = "deploy" ]; then\
 		$(eval old_remote := $(shell git remote get-url origin)) \
-		git remote set-url origin https://$(user):$(token)@github.com/jenkinsci/templating-engine-plugin.git ;\
+		git remote set-url origin https://$(user):$(token)@github.com/$(ORG_NAME)/$(REPO_NAME).git ;\
 		docker run -v $(shell pwd):/app jte-lib-docs sphinx-versioning push --show-banner docs gh-pages . ;\
 		echo git remote set-url origin $(old_remote) ;\
 		git remote set-url origin $(old_remote) ;\
@@ -43,7 +48,8 @@ deploy: ;
 live: ;
 
 jpi: ## builds the jpi via gradle
-	gradle clean jpi 
+	make plugin-image 
+	docker run -v $(shell pwd):/plugin -w /plugin jte-plugin-env gradle clean jpi 
 
 test: ## runs the plugin's test suite 
 	gradle clean test 
