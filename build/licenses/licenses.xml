@@ -1,5 +1,0 @@
-<l:dependencies xmlns:l='licenses' version='1.0' artifactId='jte-libs-as-plugin' groupId='org.jenkins-ci.plugins'>
-  <l:dependency version='1.0' artifactId='jte-libs-as-plugin' groupId='org.jenkins-ci.plugins' name='My Custom Library Source' url=''>
-    <l:description>SDP Pipeline Libraries</l:description>
-  </l:dependency>
-</l:dependencies>
