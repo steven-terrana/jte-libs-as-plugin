@@ -11,15 +11,15 @@ repositories {
 }
 
 group = 'org.jenkins-ci.plugins'
-version = '1.0' 
-description = 'SDP Pipeline Libraries' 
+version = '1.0'
+description = 'SDP Pipeline Libraries'
 
 jenkinsPlugin {
     coreVersion = '2.121.3'
     shortName = 'my-custom-libs'
     /*
-        the displayName will be what is displayed in the 
-        library source dropdown menu when selecting a 
+        the displayName will be what is displayed in the
+        library source dropdown menu when selecting a
         library providing plugin
     */
     displayName = 'My Custom Library Source'
@@ -29,13 +29,13 @@ dependencies{
     /*
         pin the earliest version of JTE that your libraries depend
         upon
-    */  
-    jenkinsPlugins "org.jenkins-ci.plugins:templating-engine:1.4" 
+    */
+    jenkinsPlugins "org.jenkins-ci.plugins:templating-engine:2.0"
 
     ///////////////////////
-    // Plugin Dependencies 
+    // Plugin Dependencies
     // - add the plugins your libraries depend upon below
     //   following the same syntax as the JTE dependency
     ///////////////////////
-    
+
 }
