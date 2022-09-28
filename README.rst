@@ -1,6 +1,6 @@
 .. _home: 
 
-This repository has been deprecated. 
+🚨 This repository has been deprecated 🚨
 
 Instead, you should checkout the `JTE Library Scaffold <https://github.com/steven-terrana/jte-library-scaffold>`_ which uses the `Gradle JTE Plugin <https://github.com/jenkinsci/gradle-jte-plugin>`_ to package a library source as a Jenkins plugin.
 
